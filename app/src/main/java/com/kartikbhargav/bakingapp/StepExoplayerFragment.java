@@ -188,6 +188,11 @@ public class StepExoplayerFragment extends android.support.v4.app.Fragment imple
         super.onSaveInstanceState(outState);
         outState.putLong(SELECTED_POSITION, position);
         outState.putParcelable(SELECTED_STEP, mStep);
+
+        boolean isPlayWhenReady = mPlayer.getPlayWhenReady();
+        outState.putBoolean("playstate", isPlayWhenReady);
+
+        mPlayer.setPlayWhenReady(isPlayWhenReady);
     }
 
     public void getStepData(Step step) {

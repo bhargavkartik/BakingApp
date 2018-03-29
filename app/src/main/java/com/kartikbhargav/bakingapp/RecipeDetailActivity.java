@@ -76,7 +76,7 @@ public class RecipeDetailActivity extends AppCompatActivity implements RecipeIng
 
     public void setImage() {
         String imageName = recipe.getName();
-        int imageId = R.drawable.recipe_icon_md;
+        int imageId = R.drawable.recipe_icon_md_small;
         switch (imageName) {
             case AppConstants.nutella_pie:
                 imageId = R.drawable.ic_nutella_pie;

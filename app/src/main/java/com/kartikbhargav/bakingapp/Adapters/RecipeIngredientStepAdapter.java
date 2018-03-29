@@ -16,6 +16,7 @@ import com.kartikbhargav.bakingapp.Data.Ingredient;
 import com.kartikbhargav.bakingapp.Data.Recipe;
 import com.kartikbhargav.bakingapp.Data.Step;
 import com.kartikbhargav.bakingapp.R;
+import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -67,6 +68,13 @@ public class RecipeIngredientStepAdapter extends RecyclerView.Adapter<RecyclerVi
             position = position - mRecipe.getIngredients().size();
             Step step = mRecipe.getSteps().get(position);
             ((StepViewHolder) holder).recipeStepTitle.setText(step.getShortDescription());
+            if (!step.getThumbnailURL().isEmpty()) {
+                Picasso.with(mContext).load(step.getThumbnailURL()).placeholder(R.drawable.recipe_icon_md_small)
+                        .into(((StepViewHolder) holder).recipeStepImage);
+            } else {
+                Picasso.with(mContext).load(R.drawable.recipe_icon_md_small)
+                        .into(((StepViewHolder) holder).recipeStepImage);
+            }
         }
     }
 
@@ -104,6 +112,9 @@ public class RecipeIngredientStepAdapter extends RecyclerView.Adapter<RecyclerVi
 
         @BindView(R.id.recipe_step_title)
         TextView recipeStepTitle;
+
+        @BindView(R.id.recipe_step_image)
+        ImageView recipeStepImage;
 
         public StepViewHolder(View itemView) {
             super(itemView);
